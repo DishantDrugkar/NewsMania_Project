@@ -1,0 +1,248 @@
+/* General styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+img {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+}
+
+/* Navbar */
+.heading-container {
+  background-color: #cb202d;
+  color: #ffffff;
+  font-size: 2.5em;
+  padding: 0.8em 1em;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 50px 0 rgba(2, 0, 31, 0.3);
+  z-index: 10;
+}
+
+.heading-container h4 {
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: 5px;
+  margin-left: 1em;
+}
+
+/* Search & Filter Container */
+.search-filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-top: 114px; /* Navbar ke neeche space dene ke liye */
+  padding: 10px;
+}
+
+/* Search Button Styling */
+.search-btn-container {
+  display: flex;
+  gap: 0.5em;
+}
+
+.search-btn-container input {
+  padding: 0.5em;
+  border: none;
+  border-radius: 0.4em;
+  width: 13em;
+}
+
+.search-btn-container button {
+  padding: 0.5em 1em;
+  background-color: #ffffff;
+  color: #cb202d;
+  border: 1px solid #cb202d;
+  border-radius: 0.4em;
+  cursor: pointer;
+}
+
+.search-btn-container button:hover {
+  background-color: #cb202d;
+  color: #ffffff;
+}
+
+/* Filter Button Styling */
+.filter-button {
+  padding: 0.5em 1em;
+  background-color: gray;
+  color: white;
+  border: none;
+  border-radius: 0.4em;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: darkgray;
+}
+
+/* Category Buttons Styling */
+.options-container {
+  margin: 2em 0 2em 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Aligns buttons to the left */
+  gap: 2em;
+  text-align: center;
+  padding-left: 2em;
+}
+
+.option {
+  background-color: #d5d5d5;
+  border: none;
+  cursor: pointer;
+  padding: 0.8em 1.5em;
+  border-radius: 0.5em;
+  text-transform: capitalize;
+}
+
+.option.active {
+  background-color: #cb202d;
+  color: #ffffff;
+}
+
+/* News Container */
+.container {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 1em;
+}
+
+.news-card {
+  display: grid;
+  position: relative;
+  grid-template-rows: auto 1fr;
+  box-shadow: 0 0 15px rgba(85, 85, 85, 0.2);
+  margin: 1em 0;
+  border-radius: 15px;
+}
+
+.news-card img {
+  border-radius: 15px 15px 0 0;
+}
+
+.news-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1em;
+  font-size: 15px;
+}
+
+.news-title {
+  font-weight: 600;
+  color: #0b0028;
+}
+
+.news-description {
+  color: #6f6f6f;
+  text-align: justify;
+  margin: 0.8em 0 1em 0;
+}
+
+/* Buttons Styling */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.view-button, .whatsapp-share-button, .bookmark-button {
+  padding: 8px 12px;
+  font-size: 14px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.whatsapp-share-button {
+  background-color: #25d366;
+  color: white;
+}
+
+.bookmark-button {
+  background-color: #ffc107;
+  color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.whatsapp-share-button:hover {
+  background-color: #128C7E;
+}
+
+.bookmark-button:hover {
+  background-color: #ff8c00;
+}
+/* User Profile Section */
+.user-section {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Profile Icon Styling */
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Dropdown Styling */
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 150px;
+  z-index: 1000;
+}
+
+.user-dropdown a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.user-dropdown a:hover {
+  background: #f0f0f0;
+}

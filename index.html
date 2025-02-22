@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Newsmania</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* Basic styling for the user section */
+      .user-section {
+          position: relative;
+          display: inline-block;
+      }
+
+      .profile-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+      }
+
+      /* Hidden dropdown by default */
+      .user-dropdown {
+          display: none;
+          position: absolute;
+          top: 50px;
+          right: 0;
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          z-index: 1;
+      }
+
+      /* Dropdown link styling */
+      .user-dropdown a {
+          display: block;
+          padding: 10px;
+          text-decoration: none;
+          color: black;
+          border-bottom: 1px solid #ccc;
+      }
+
+      .user-dropdown a:hover {
+          background-color: #f0f0f0;
+      }
+
+      /* Show the dropdown when active */
+      .user-section:hover .user-dropdown {
+          display: block;
+      }
+  </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="heading-container">
+      <h4>Newsmania Headlines</h4>
+    </div>
+    
+    <!-- Search & Filter Container -->
+    <div class="search-filter-container">
+      <div class="search-btn-container">
+        <input type="text" id="search-input" placeholder="  Search for news..." />
+        <button id="search-button">Search</button>
+      </div>
+      
+      <!-- Categories Buttons -->
+      <div class="options-container">
+        <button class="option active" data-source="general">GENERAL</button>
+        <button class="option" data-source="sports">SPORTS</button>
+        <button class="option" data-source="technology">TECHNOLOGY</button>
+        <button class="option" data-source="politics">POLITICS</button>
+        <button class="option" data-source="defence">DEFENCE</button>
+        <button class="option" data-source="entertainment">TV SHOWS</button>
+      </div>
+    </div>
+    <!-- Navbar -->
+<div class="heading-container">
+  <h4>Newsmania Headlines</h4>
+
+<!-- User Profile Section -->
+<div class="user-section" id="userSection">
+  <img src="user-profile.avif" alt="User Profile" class="profile-icon" id="profileIcon">
+  <div class="user-dropdown" id="userDropdown">
+      <a href="profile.html">Profile</a>
+      <a href="auth.html">Sign Out</a>
+  </div>
+</div>
+</div>
+
+    <div class="container"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

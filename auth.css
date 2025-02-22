@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f3f3;
+}
+
+.auth-container {
+  display: flex;
+  width: 900px;
+  background-color: #D3D3D3;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.left-section {
+  width: 50%;
+  padding: 3em;
+}
+
+.right-section {
+  width: 50%;
+  background-color: #cb202d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-section img {
+  width: 80%;
+}
+
+h2 {
+  font-size: 1.8em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+p {
+  color: gray;
+  margin-bottom: 1.5em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  padding: 12px;
+  background-color: #7c4dff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.google-signin {
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.remember-forgot a {
+  color: #7c4dff;
+  text-decoration: none;
+}
+
+span {
+  color: #7c4dff;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
