@@ -27,10 +27,8 @@ async function fetchNews(category = "general", page = 1, query = "") {
   let url = apiUrl + `&page=${page}&pageSize=10`;
 
   if (query) {
-    // If there is a search query, search for that specific keyword
     url = `https://newsapi.org/v2/everything?apiKey=${apiKey}&q=${query}&page=${page}&pageSize=10`;
   } else if (category !== "general") {
-    // For non-general categories, add the category to the URL
     if (category === "army") {
       url = `https://newsapi.org/v2/everything?apiKey=${apiKey}&q=defence&page=${page}&pageSize=10`;
     } else {
@@ -42,15 +40,20 @@ async function fetchNews(category = "general", page = 1, query = "") {
     loading = true;
     const response = await fetch(url);
     const data = await response.json();
+
     if (data.status === "ok" && data.articles.length > 0) {
+      if (page === 1) container.innerHTML = ""; // Clear only on the first page
       displayNews(data.articles);
-    } else {
+    } else if (page === 1) {
       container.innerHTML = "<p>No news articles found.</p>";
     }
+
     loading = false;
   } catch (error) {
     console.error("Error fetching news:", error);
-    container.innerHTML = "<p>Error fetching news. Please try again later.</p>";
+    if (page === 1) {
+      container.innerHTML = "<p>Error fetching news. Please try again later.</p>";
+    }
     loading = false;
   }
 }
