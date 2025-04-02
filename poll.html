@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI News Poll</title>
     <style>
-        
         body {
-            
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
@@ -49,77 +47,68 @@
 </head>
 <body>
     <h1>News Poll</h1>
+
     <div class="poll-container">
-        <h3 id="poll-question">Loading poll...</h3>
+        <h3 id="poll-question">Loading polls...</h3>
         <div id="poll-options"></div>
-        <button class="vote-btn" onclick="submitVote()">Vote</button>
-        <button class="next-btn" onclick="loadPoll()">Next Poll</button>
+        <button class="vote-btn">Vote</button>
+        <button class="next-btn">Next Poll</button>
         <p id="vote-message"></p>
     </div>
 
-    <script>
-       async function loadPolls() {
-    const response = await fetch("http://localhost:8080/api/polls/latest");
-    const polls = await response.json();
-
-    if (!Array.isArray(polls) || polls.length === 0) {
-        document.getElementById("poll-question").innerText = "No polls available for today";
-        return;
-    }
-
-    let currentPollIndex = 0;
-
-    function displayPoll(index) {
-        const poll = polls[index];
-        document.getElementById("poll-question").innerText = poll.question;
-
-        const pollOptionsDiv = document.getElementById("poll-options");
-        pollOptionsDiv.innerHTML = '';
-
-        poll.options.forEach(option => {
-            const label = document.createElement("label");
-            label.classList.add("option");
-            label.innerHTML = `<input type="radio" name="poll" value="${option}"> ${option}`;
-            pollOptionsDiv.appendChild(label);
+    <script type="module">
+        import newsPolls from './newsPoll.js';
+    
+        let currentPollIndex = Math.floor(Math.random() * newsPolls.length); // Select a random poll on load
+    
+        function displayPoll(index) {
+            const poll = newsPolls[index];
+            document.getElementById("poll-question").innerText = poll.pollQuestion;
+    
+            const pollOptionsDiv = document.getElementById("poll-options");
+            pollOptionsDiv.innerHTML = '';
+    
+            poll.options.forEach(option => {
+                const label = document.createElement("label");
+                label.classList.add("option");
+                label.innerHTML = `<input type="radio" name="poll" value="${option}"> ${option}`;
+                pollOptionsDiv.appendChild(label);
+            });
+    
+            document.getElementById("poll-options").dataset.correctAnswer = poll.correctAnswer;
+            document.getElementById("vote-message").innerHTML = ''; // Clear previous messages
+        }
+    
+        function submitVote() {
+            const selectedOption = document.querySelector('input[name="poll"]:checked');
+            if (!selectedOption) {
+                alert("Please select an option before voting.");
+                return;
+            }
+    
+            const userVote = selectedOption.value;
+            const correctAnswer = document.getElementById("poll-options").dataset.correctAnswer;
+    
+            document.getElementById("vote-message").innerHTML = 
+                `You voted for: <strong>${userVote}</strong><br>Correct Answer: <strong>${correctAnswer}</strong>`;
+    
+            if (userVote === correctAnswer) {
+                document.getElementById("vote-message").style.color = "green";
+                document.getElementById("vote-message").innerHTML += "<br><strong>Correct!</strong> 🎉";
+            } else {
+                document.getElementById("vote-message").style.color = "red";
+                document.getElementById("vote-message").innerHTML += "<br><strong>Incorrect.</strong> ❌";
+            }
+        }
+    
+        document.querySelector(".vote-btn").addEventListener("click", submitVote);
+        
+        document.querySelector(".next-btn").addEventListener("click", () => {
+            currentPollIndex = Math.floor(Math.random() * newsPolls.length); // Random poll on next button click
+            displayPoll(currentPollIndex);
         });
-
-        document.getElementById("poll-options").dataset.correctAnswer = poll.correctAnswer;
-    }
-
-    displayPoll(currentPollIndex);
-
-    document.querySelector(".next-btn").addEventListener("click", () => {
-        currentPollIndex = (currentPollIndex + 1) % polls.length;
-        displayPoll(currentPollIndex);
-        document.getElementById("vote-message").innerHTML = ''; // Clear previous message
-    });
-
-    document.querySelector(".vote-btn").addEventListener("click", submitVote);
-}
-
-function submitVote() {
-    const selectedOption = document.querySelector('input[name="poll"]:checked');
-    if (!selectedOption) {
-        alert("Please select an option before voting.");
-        return;
-    }
-
-    const userVote = selectedOption.value;
-    const correctAnswer = document.getElementById("poll-options").dataset.correctAnswer;
-
-    document.getElementById("vote-message").innerHTML = 
-        `You voted for: <strong>${userVote}</strong><br>Correct Answer: <strong>${correctAnswer}</strong>`;
-
-    if (userVote === correctAnswer) {
-        document.getElementById("vote-message").style.color = "green";
-        document.getElementById("vote-message").innerHTML += "<br><strong>Correct!</strong> 🎉";
-    } else {
-        document.getElementById("vote-message").style.color = "red";
-        document.getElementById("vote-message").innerHTML += "<br><strong>Incorrect.</strong> ❌";
-    }
-}
-
-document.addEventListener("DOMContentLoaded", loadPolls);
+    
+        window.onload = () => displayPoll(currentPollIndex);
     </script>
 </body>
 </html>
